@@ -56,7 +56,7 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
   #load package logo
 
   logo_source = tempfile()
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/white_logo.png', logo_source, mode = 'wb')
+  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png', logo_source, mode = 'wb')
   logo = readPNG(logo_source)
   file.remove(logo_source)
 
@@ -67,7 +67,7 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
   #load court
 
   scatter_source = tempfile()
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/scatter.png', scatter_source, mode = 'wb')
+  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/scatter.png', scatter_source, mode = 'wb')
   scatter = readPNG(scatter_source)
   scatter = rasterGrob(scatter, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
   file.remove(scatter_source)
@@ -104,7 +104,7 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
     #load court
 
     heatmap_source = tempfile()
-    download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/heatmap.png', heatmap_source, mode = 'wb')
+    download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/heatmap.png', heatmap_source, mode = 'wb')
     heatmap = readPNG(heatmap_source)
     heatmap = rasterGrob(heatmap, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
     file.remove(heatmap_source)
