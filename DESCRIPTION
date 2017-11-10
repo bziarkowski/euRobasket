@@ -1,0 +1,15 @@
+Package: euRobasket
+Type: Package
+Title: R's interface to european basketball data.
+Version: 0.1.0
+Authors@R: person("Bartosz", "Ziarkowski", email = "bziarkowski1@gmail.com", role = "cre")
+Description: Package euRobasket helps with downloading and analyzing data from
+    european basketball leagues.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: jsonlite, dplyr, tidyr, XML, png, grid, ggplot2, shiny, shinydashboard, igraph
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
