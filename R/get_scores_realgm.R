@@ -32,7 +32,7 @@ get_scores_realgm = function(start_date, end_date, league) {
     stop('Incorrect league name, use get_realgm_league_names() to find available leagues')
   }
 
-  league_id = ids$id[ids$league_name == league]
+  league_id = leagues$id[leagues$league_name == league]
 
   #download scores from given days
   scores = lapply(1:length(date_seq), function(x) {
