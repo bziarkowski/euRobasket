@@ -53,26 +53,21 @@ shots_dashboard = function(shots_df, dashboardTitle = 'Shots', save = FALSE, app
 
 #load package logo
 
-logo_source = tempfile()
-download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png', logo_source, mode = 'wb')
-logo = readPNG(logo_source)
-file.remove(logo_source)
+logo = readPNG(system.file('data', 'white_logo.png', package = 'euRobasket'))
+
+#save logo directory
+logo_dir = system.file('data', 'white_logo.png', package = 'euRobasket')
 
 #load basketball court for scatter
 
-scatter_source = tempfile()
-download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/scatter.png', scatter_source, mode = 'wb')
-scatter = readPNG(scatter_source)
+scatter = readPNG(system.file('data', 'scatter.png', package = 'euRobasket'))
 scatter = rasterGrob(scatter, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
-file.remove(scatter_source)
 
 #load basketball court for heatmap
 
-heatmap_source = tempfile()
-download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/heatmap.png', heatmap_source, mode = 'wb')
-heatmap = readPNG(heatmap_source)
+heatmap = readPNG(system.file('data', 'heatmap.png', package = 'euRobasket'))
 heatmap = rasterGrob(heatmap, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
-file.remove(heatmap_source)
+
 
 dat = shots_df
 players = unique(paste(dat$player,' ','(',dat$team, ')', sep = ''))
@@ -84,7 +79,7 @@ ui_run = dashboardPage(skin = 'yellow',
   mydashboardHeader(
                   tags$li(class = "dropdown",
                           tags$a(href="https://github.com/bziarkowski/euRobasket", target="_blank",
-                                 tags$img(height = '30px',alt="pkg Logo", src="https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png")
+                                 tags$b('euRobasket')
                           ))),
   dashboardSidebar(
     sidebarMenu(
@@ -393,9 +388,9 @@ shinyApp(ui_run, server_run)
   dir.create(app_name)
 
   #save images
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png', destfile = paste(app_name, '/', 'logo.png', sep = ''))
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/scatter.png', destfile = paste(app_name, '/', 'field.png', sep = ''))
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/heatmap.png', destfile = paste(app_name, '/', 'field_heat.png', sep = ''))
+  file.copy(from = system.file('data', 'white_logo.png', package = 'euRobasket'), to = paste(app_name, '/', 'logo.png', sep = ''))
+  file.copy(from = system.file('data', 'scatter.png', package = 'euRobasket'), to = paste(app_name, '/', 'field.png', sep = ''))
+  file.copy(from = system.file('data', 'heatmap.png', package = 'euRobasket'), to = paste(app_name, '/', 'field_heat.png', sep = ''))
 
   #save shots
   saveRDS(dat, paste(app_name, '/', 'shots.RDS', sep = ''))
@@ -443,7 +438,7 @@ shinyApp(ui_run, server_run)
                   mydashboardHeader(
                     tags$li(class = 'dropdown',
                             tags$a(href='https://github.com/bziarkowski/euRobasket', target='_blank',
-                                   tags$img(height = '30px',alt='pkg Logo', src='https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png')
+                                   tags$b('euRobasket')
                             ))),
                   dashboardSidebar(
                     sidebarMenu(

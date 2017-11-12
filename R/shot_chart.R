@@ -28,13 +28,13 @@
 
 
 shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
-
+  
   dat = shots_df
-
+  
   #define size of title, stop if title is too long
-
+  
   title_length = length(strsplit(title, split = '')[[1]])
-
+  
   if(title_length <= 40) {
     title_size = 7
   } else if(title_length > 40 & title_length <= 45) {
@@ -46,71 +46,63 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
   } else if(title_length > 65) {
     stop('Title is too long.')
   }
-
+  
   #create data frame with title
-
+  
   text_df = data.frame(x = 755,
                        y = 1060,
                        lab = title)
-
+  
   #load package logo
-
-  logo_source = tempfile()
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/white_logo.png', logo_source, mode = 'wb')
-  logo = readPNG(logo_source)
-  file.remove(logo_source)
-
+  
+  
+  logo = readPNG(system.file('data', 'white_logo.png', package = 'euRobasket'))
+  
   #create scatter plot
-
+  
   if(type == 'Scatter') {
-
-  #load court
-
-  scatter_source = tempfile()
-  download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/scatter.png', scatter_source, mode = 'wb')
-  scatter = readPNG(scatter_source)
-  scatter = rasterGrob(scatter, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
-  file.remove(scatter_source)
-
-  #create scatter plot
-
-  plot = ggplot() +
-    annotation_custom(scatter, -60, 1570, -10, 1150) +
-    xlim(-60, 1570) +
-    ylim(-10, 1150) +
-    geom_point(data = dat, aes(x,y, colour = outcome), size = 6, alpha = 0.7) +
-    geom_text(data = text_df, aes(x,y,label = lab), size = title_size, colour = 'white', family = 'AvantGarde',fontface = 'plain') +
-    scale_color_manual(values = c('#27ae60', '#e74c3c')) +
-    guides(colour = FALSE) +
-    annotation_custom(rasterGrob(logo),
-                      xmin = 1200, xmax = 1500, ymin = 950, ymax = 1150) +
-    theme(line = element_blank(),
-          axis.title.x = element_blank(),
-          axis.title.y = element_blank(),
-          axis.text.x = element_blank(),
-          panel.background = element_blank(),
-          axis.text.y = element_blank(),
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          strip.background = element_blank(),
-          panel.spacing = element_blank(),
-          legend.position = 'bottom',
-          legend.background = element_blank())
-
-  print(plot)
-
-  } else if(type == 'Heatmap') {
-
+    
     #load court
-
-    heatmap_source = tempfile()
-    download.file('https://raw.githubusercontent.com/bziarkowski/euRobasket/master/doc/heatmap.png', heatmap_source, mode = 'wb')
-    heatmap = readPNG(heatmap_source)
+    
+    scatter = readPNG(system.file('data', 'scatter.png', package = 'euRobasket'))
+    scatter = rasterGrob(scatter, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
+    
+    #create scatter plot
+    
+    plot = ggplot() +
+      annotation_custom(scatter, -60, 1570, -10, 1150) +
+      xlim(-60, 1570) +
+      ylim(-10, 1150) +
+      geom_point(data = dat, aes(x,y, colour = outcome), size = 6, alpha = 0.7) +
+      geom_text(data = text_df, aes(x,y,label = lab), size = title_size, colour = 'white', family = 'AvantGarde',fontface = 'plain') +
+      scale_color_manual(values = c('#27ae60', '#e74c3c')) +
+      guides(colour = FALSE) +
+      annotation_custom(rasterGrob(logo),
+                        xmin = 1200, xmax = 1500, ymin = 950, ymax = 1150) +
+      theme(line = element_blank(),
+            axis.title.x = element_blank(),
+            axis.title.y = element_blank(),
+            axis.text.x = element_blank(),
+            panel.background = element_blank(),
+            axis.text.y = element_blank(),
+            panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank(),
+            strip.background = element_blank(),
+            panel.spacing = element_blank(),
+            legend.position = 'bottom',
+            legend.background = element_blank())
+    
+    print(plot)
+    
+  } else if(type == 'Heatmap') {
+    
+    #load court
+    
+    heatmap = readPNG(system.file('data', 'heatmap.png', package = 'euRobasket'))
     heatmap = rasterGrob(heatmap, width = unit(1.0, 'npc'), height = unit(1.0, 'npc'))
-    file.remove(heatmap_source)
-
+    
     #define number of bins for heatmap
-
+    
     if(nrow(dat)<=5){
       selected_bins = 6
     } else if(nrow(dat)>5 & nrow(dat)<=30) {
@@ -118,9 +110,9 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
     } else if(nrow(dat)>30) {
       selected_bins = 10
     }
-
+    
     #create heatmap
-
+    
     plot = ggplot(data = dat, aes(x,y)) +
       annotation_custom(heatmap, -60, 1570, -10, 1150) +
       xlim(-60, 1570) +
@@ -145,6 +137,6 @@ shot_chart = function(shots_df, title = 'Shot chart', type = 'Scatter') {
             legend.position = 'bottom',
             legend.background = element_blank())
     print(plot)
-}
-
+  }
+  
 }
