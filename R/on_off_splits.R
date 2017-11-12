@@ -35,6 +35,9 @@ on_off_splits = function(stints.df, players) {
 
 #check if selected players appear in stints.df
 stint_players = get_on_off_splits_players(stints.df, print = FALSE)
+#change encoding to  utf-8
+Encoding(stint_players$Player) = 'UTF-8'
+Encoding(players) = 'UTF-8'
 
 player_appear = players %in% stint_players$Player
 
