@@ -39,6 +39,19 @@ on_off_splits(players = c('Ł. Koszarek', 'J. Florence'))
 
 ```
 
+# Getting the ids for fibalivestats.com and live.fibaeurope.com
+
+Ids for fibalivestats.com and live.fibaeurope.com are available with this package.
+You can get them by using `data()`
+
+```R
+#fibalivestats.com
+data("fibalivestats_matches_ids")
+
+#live.fibaeurope.com
+data("livefibaeurope_matches_ids")
+```
+
 # Download stats tables from realgm.com
 
 Stats tables with teams or players stats. You can download different types of
