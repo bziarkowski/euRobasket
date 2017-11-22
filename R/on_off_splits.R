@@ -131,7 +131,6 @@ if(length(home_rows_on_court)==0 & length(away_rows_on_court)==0) {
         Select different players.')
 }
 
-away_rows_on_court = which(away_on_court$V1 == 'TRUE' & away_on_court$V2 == TRUE)
 away_team_name = stints.df$away_team[away_rows_on_court[1]]
 away_rows_all = which(stints.df$away_team == away_team_name)
 away_rows_off_court = away_rows_all[!(away_rows_all %in% away_rows_on_court)]
