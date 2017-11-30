@@ -2,7 +2,7 @@
 
 euRobasket is an R package which helps download, prepare and analyze data from
 European basketball leagues. In current version data sources include: realgm.com,
-fibalivestats.com and live.fibaeurope.com.
+fibalivestats.com, live.fibaeurope.com.
 
 
 # Installation
