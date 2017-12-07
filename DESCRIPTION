@@ -1,6 +1,6 @@
 Package: euRobasket
 Type: Package
-Title: R's interface to european basketball data.
+Title: R package for European basketball data. 
 Version: 0.1.0
 Authors@R: person("Bartosz", "Ziarkowski", email = "bziarkowski1@gmail.com", role = "cre")
 Description: Package euRobasket helps with downloading and analyzing data from
